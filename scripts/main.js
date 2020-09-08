@@ -104,10 +104,10 @@ const time_length = {
     lunch: 50
 }
 
-const ClassScheduler = {};
+const ClassSchedule = {};
 
 /**@type {{dotw: number | undefined, y: number | undefined}}*/
-ClassScheduler.selector = {dotw: undefined, y: undefined};
+ClassSchedule.selector = {dotw: undefined, y: undefined};
 
 /**
  * Returns hours and minutes combined in minutes.
@@ -116,7 +116,7 @@ Date.prototype.getHourMinute = function() {
     return this.getHours() * 60 + this.getMinutes();
 }
 
-ClassScheduler.initializeTable = function() {
+ClassSchedule.initializeTable = function() {
     $('#table').html('<tr>' + ['월', '화', '수', '목', '금'].map((str, idx) => `<td class="dotw">${str}</td>`) + '</tr>');
     for(let y = 0; y < schedule[0].length; y++) {
         let day_string = schedule.map((arr, dotw) => {
@@ -128,7 +128,7 @@ ClassScheduler.initializeTable = function() {
     }
 }
 
-ClassScheduler.refreshTable = function(/**@type {Date}*/ date=new Date()) {
+ClassSchedule.refreshTable = function(/**@type {Date}*/ date=new Date()) {
     let current_dotw = date.getDay();
     let current_hm = date.getHourMinute();
     for(let y = 0; y < schedule[0].length; y++) {
@@ -149,13 +149,16 @@ ClassScheduler.refreshTable = function(/**@type {Date}*/ date=new Date()) {
     }
 }
 
-ClassScheduler.getTimeIndex = function(/**@type {Date}*/ date=new Date()) {
-    let current_dotw = date.getDay() - 1;
+ClassSchedule.getTimeIndex = function(/**@type {Date}*/ date=new Date()) {
     let current_hm = date.getHourMinute() - time_length.start;
-    if(current_hm >= (lunch_start + time_length.lunch)) current_hm -= time_length.lunch;
+    let lunch_start = time_length.lunch_time_index * (time_length.class + time_length.break);
+    let index = Math.floor(
+        (current_hm < (lunch_start + time_length.lunch) ? current_hm : current_hm - time_length.lunch) / (time_length.class + time_length.break)
+    );
+    return index;
 }
 
-ClassScheduler.refreshCurrentSubject = function(/**@type {Date}*/ date) {
+ClassSchedule.refreshCurrentSubject = function(/**@type {Date}*/ date) {
     if(this.selector.dotw !== undefined && this.selector.y !== undefined) return;
     let current_dotw = date.getDay() - 1;
     let current_hm = date.getHourMinute();
@@ -167,9 +170,7 @@ ClassScheduler.refreshCurrentSubject = function(/**@type {Date}*/ date) {
     }
     current_hm -= time_length.start;
     let lunch_start = time_length.lunch_time_index * (time_length.class + time_length.break);
-    let index = Math.floor(
-        (current_hm < (lunch_start + time_length.lunch) ? current_hm : current_hm - time_length.lunch) / (time_length.class + time_length.break)
-    );
+    let index = this.getTimeIndex();
     let subject = subjects[schedule[current_dotw][index]];
     if(current_hm < 0) { // Morning
         this.setMessage('morning');
@@ -201,7 +202,7 @@ ClassScheduler.refreshCurrentSubject = function(/**@type {Date}*/ date) {
  * @param {('class'|'break'|'lunch'|'morning'|'early_morning'|'done'|'weekend')} type - The type of the message.
  * @param {Subject} subject 
  */
-ClassScheduler.setMessage = function(type, subject) {
+ClassSchedule.setMessage = function(type, subject) {
     switch(type) {
         case 'weekend':
             $('#subject-message').html('오늘은 주말입니다.');
@@ -237,17 +238,17 @@ ClassScheduler.setMessage = function(type, subject) {
     }
 }
 
-ClassScheduler.refreshContents = function(/**@type {Date}*/ date=new Date()) {
-    ClassScheduler.refreshTable(date);
-    ClassScheduler.setSelectedSubjectMessage(date);
-    ClassScheduler.refreshCurrentSubject(date);
+ClassSchedule.refreshContents = function(/**@type {Date}*/ date=new Date()) {
+    ClassSchedule.setSelectedSubjectMessage(date);
+    ClassSchedule.refreshTable(date);
+    ClassSchedule.refreshCurrentSubject(date);
     $('.time').text(
         `${date.getFullYear()}년 ${date.getMonth()+1}월 ${date.getDate()}일 (${['일', '월', '화', '수', '목', '금', '토'][date.getDay()]}) ` +
         `${('00' + date.getHours()).slice(-2)}:${('00' + date.getMinutes()).slice(-2)}:${('00' + date.getSeconds()).slice(-2)}`
     );
 }
 
-ClassScheduler.setDirectLinks = function(/**@type {Subject}*/{zoom_link, wedorang_link}) {
+ClassSchedule.setDirectLinks = function(/**@type {Subject}*/{zoom_link, wedorang_link}) {
     if(wedorang_link === undefined) $('#wedorang-button').hide();
     else {
         $('#wedorang-button').show();
@@ -260,12 +261,32 @@ ClassScheduler.setDirectLinks = function(/**@type {Subject}*/{zoom_link, wedoran
     }
 }
 
-ClassScheduler.setSelectedSubjectMessage = function(/**@type {Date}*/date=new Date()) {
+ClassSchedule.setSelectedSubjectMessage = function(/**@type {Date}*/date=new Date()) {
     if(this.selector.dotw !== undefined && this.selector.y !== undefined) {
-        $('#go-back').show();
+
+        let current_index = ClassSchedule.getTimeIndex(), current_dotw = new Date().getDay() - 1;
+        if(current_dotw === this.selector.dotw && current_index === this.selector.y) {
+            ClassSchedule.selector = {dotw: undefined, y: undefined};
+            $('#go-back').hide();
+            return;
+        }
+
         let subject = subjects[schedule[this.selector.dotw][this.selector.y]];
-        $('#subject-message').html(`선택한 과목 <span class="current-subject">${subject.name}</span>까지 1일 남았습니다.`);
+
+        if(current_dotw === this.selector.dotw) {
+            if(this.selector.y < current_index) {
+                $('#subject-message').html(`선택한 과목 <span class="current-subject">${subject.name}</span>까지 1주일 남았습니다.`);
+            }
+            else {   
+                $('#subject-message').html(`선택한 과목 <span class="current-subject">${subject.name}</span>까지 ${this.selector.y - current_index}교시 남았습니다.`);
+            }
+        }
+        else {
+            let delta = (((this.selector.dotw - current_dotw) % 7) + 7) % 7;
+            $('#subject-message').html(`선택한 과목 <span class="current-subject">${subject.name}</span>까지 ${delta}일 남았습니다.`);
+        }
         this.setDirectLinks(subject);
+        $('#go-back').show();
     }
     else {
         $('#go-back').hide();
@@ -273,20 +294,31 @@ ClassScheduler.setSelectedSubjectMessage = function(/**@type {Date}*/date=new Da
 }
 
 $(() => {
-    ClassScheduler.initializeTable();
-    ClassScheduler.refreshContents()
-    setInterval(() => ClassScheduler.refreshContents(), 500);
+
+    ClassSchedule.initializeTable();
+    ClassSchedule.refreshContents()
+    setInterval(() => ClassSchedule.refreshContents(), 500);
+
+
     $('.go-to-button').click(function() {
         if($(this).attr('href') === '') return;
         window.open($(this).attr('href'), '_blank');
     });
+
+
     $('.subject-td').click(function() {
         let time_arr = $(this).attr('time').split(',');
-        ClassScheduler.selector = {dotw: parseInt(time_arr[0]), y: parseInt(time_arr[1])};
-        ClassScheduler.refreshContents();
+        let dotw = parseInt(time_arr[0]), index = parseInt(time_arr[1]);
+
+        ClassSchedule.selector = {dotw: dotw, y: index};
+        ClassSchedule.refreshContents();
     });
+
+
     $('#go-back').click(function() {
-        ClassScheduler.selector = {dotw: undefined, y: undefined};
-        ClassScheduler.refreshContents();
+        ClassSchedule.selector = {dotw: undefined, y: undefined};
+        ClassSchedule.refreshContents();
     })
+
+
 })
