@@ -1,0 +1,131 @@
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+:root {
+    --complete-color: rgb(30, 184, 51, 0.9);
+    --complete-color-hover: rgba(21, 156, 39, 0.9);
+    --doing-color1: rgba(207, 152, 0, 0.9);
+    --doing-color2: rgba(255, 203, 61, 0.9);
+}
+@keyframes doing-animation {
+    from { background-color: var(--doing-color1); }
+    to { background-color: var(--doing-color2); }
+}
+* {
+    margin: 0; padding: 0;
+    font-family: "NanumSquare", "돋움", Dotum, sans-serif;
+    color: white;
+}
+html, body {
+    background-color: rgb(41, 42, 42);
+    height: 100%;
+}
+.body-div {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+}
+.body-left {
+    grid-column: 1 / 4;
+    border-right: 1px solid gray;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.body-right {
+    height: 100%;
+    display: flex;
+    grid-column: 4 / 9;
+    justify-content: center;
+    align-items: center;
+    padding: auto 0;
+    text-align: center;
+}
+#table {
+    border-collapse: collapse;
+    float: right;
+    margin-right: 40px;
+}
+.dotw {
+    text-align: center;
+    border-bottom: 1px solid white;
+    padding: 4px 0;
+}
+.subject {
+    text-align: center;
+    cursor: default;
+    cursor: pointer;
+}
+.subject-td {
+    width: 100px;
+    height: 80px;
+    padding: auto;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.1s;
+}
+.subject-td:hover { background: rgba(255, 255, 255, 0.1); }
+.done-subject {
+    background-color: var(--complete-color);
+}
+.done-subject:hover {
+    background-color: var(--complete-color-hover) !important;
+}
+.doing-subject {
+    animation-duration: 1.2s;
+    animation-name: doing-animation;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+.message-wrapper {
+    font-size: 50px;
+}
+.current-subject {
+    font-size: 70px;
+}
+.subject-submessage {
+    font-size: 30px;
+}
+.go-to-button {
+    font-size: 26px;
+    border: 1px solid #0c9c5a;
+    border-radius: 20px;
+    padding: 14px 30px;
+    margin: 10px 30px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: inline-block;
+}
+.go-to-zoom {
+    border: 1px solid rgb(45, 140, 255);
+}
+.go-to-wedorang:hover {
+    background: #0c9c5a;
+}
+.go-to-zoom:hover {
+    background: rgb(45, 140, 255);
+    color: black;
+}
+.go-to-button::before {
+    content: '<- ';
+}
+.time-wrapper {
+    width: 100%;
+    position: absolute;
+    text-align: right;
+    font-size: 20px;
+}
+.time {
+    margin-top: 10px;
+    margin-right: 20px;
+}
+#go-back {
+    top: 20%;
+    text-align: left;
+    position: absolute;
+    left: 37.5%;
+    padding-left: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    color:rgb(25, 86, 253);
+    text-decoration: underline;
+}
