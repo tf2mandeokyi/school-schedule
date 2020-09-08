@@ -1,6 +1,7 @@
 /**
  * @typedef {Object} Subject
  * @property {string?} name - The name of the subject.
+ * @property {string?} short_name - The name of the subject, but in short version.
  * @property {string?} zoom_link - The zoom link to that subject.
  * @property {string?} wedorang_link - The wedorang link to that subject.
  */
@@ -43,21 +44,25 @@ const subjects = {
     },
     'social': {
         name: '통합사회',
+        short_name: '통사',
         zoom_link: 'https://us02web.zoom.us/j/2535430699?pwd=MmxEYnFsT0ZKUHZrUUp4bEhRanl4UT09',
         wedorang_link: 'http://rang.edunet.net/class/G000340788/index.do'
     },
     'science_a': {
         name: '통합과학A',
+        short_name: '통과A',
         zoom_link: 'https://us02web.zoom.us/j/3699834810?pwd=ZU1qSm1BdnJJS0RUWUNCZEprQW1vZz09',
         wedorang_link: 'http://rang.edunet.net/class/G000343648/index.do'
     },
     'science_b': {
         name: '통합과학B',
+        short_name: '통과B',
         zoom_link: 'https://zoom.us/j/5397038425?pwd=VzFFM2xGWlhreit3czZXb3Bhejh5Zz09',
         wedorang_link: 'http://rang.edunet.net/class/G000343648/index.do'
     },
     'tech': {
         name: '기술가정',
+        short_name: '기가',
         zoom_link: 'https://zoom.us/j/8545161824?pwd=eWZ6WHZhakdCeHp3aFo4Z0xVWkxZQT09',
         wedorang_link: 'http://rang.edunet.net/class/G001279722/index.do'
     },
@@ -72,6 +77,7 @@ const subjects = {
     },
     'sci_experim': {
         name: '과학탐구실험',
+        short_name: '과탐실',
         wedorang_link: 'http://rang.edunet.net/class/G000341135/index.do'
     },
     'art': {
@@ -121,8 +127,11 @@ ClassSchedule.initializeTable = function() {
     for(let y = 0; y < schedule[0].length; y++) {
         let day_string = schedule.map((arr, dotw) => {
             if(subjects[arr[y]] === undefined) return '<td></td>'
-            let {zoom_link, name} = subjects[arr[y]];
-            return `<td class="subject-td" id="time_td_${dotw}_${y}" time="${dotw},${y}" subject="${arr[y]}"><div class="subject">${name !== undefined ? name : ''}</div></td>`;
+            let {name, short_name} = subjects[arr[y]];
+            return `
+                <td class="subject-td" id="time_td_${dotw}_${y}" time="${dotw},${y}" subject="${arr[y]}">
+                    <div class="subject">${short_name !== undefined ? short_name : name !== undefined ? name : ''}</div>
+                </td>`;
         }).reduce((prev, curr) => prev + curr, '');
         $('#table').append(`<tr>${day_string}</tr>`);
     }
