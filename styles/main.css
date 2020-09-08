@@ -148,6 +148,9 @@ html, body {
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
+.selected-subject {
+    font-weight: 900;
+}
 .go-to-zoom { /* OK */
     border: 1px solid rgb(45, 140, 255);
 }
