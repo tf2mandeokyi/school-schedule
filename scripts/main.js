@@ -387,11 +387,8 @@ $(() => {
         ClassSchedule.selector = {dotw: undefined, y: undefined};
         ClassSchedule.refreshContents();
     })
-reshContents();
-    });
 
     $('#go-back').click(function() {
         SchoolSchedule.setSelectorAndRefresh();
     })
-
-
+});
