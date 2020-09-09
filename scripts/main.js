@@ -140,6 +140,7 @@ ClassSchedule.getVariablesFromDate = function(/** @type {Date} */date=new Date()
     return {
         index: this.getIndexFromTime(date),
         dotw: date.getDay(),
+        /** @type {number} */
         hour_minute: date.getHourMinute()
     }
 }
@@ -335,19 +336,24 @@ ClassSchedule.updateSelectedSubject = function(/**@type {Date}*/date=new Date())
 
         if(current_dotw-1 === this.selector.dotw) {
             if(this.selector.y === current_index) {
-                ClassSchedule.selector = {dotw: undefined, y: undefined};
-                $('#go-back').hide();
-                return;
-            }
-            else if(current_hm < time_length.morning_start) {
-                let delta = this.getStartTimeFromIndex(this.selector.y) - current_hm;
-                $('#subject-message').html(`선택한 과목 <span class="current-subject">${subject.name}</span>까지 ${Math.floor(delta / 60)}시간 ${delta % 60}분 남았습니다.`);
+                let lunch_start = time_length.lunch_time_index * (time_length.class + time_length.break) + time_length.start;
+                if(current_hm >= lunch_start && current_hm < lunch_start + time_length.lunch) {
+                    let delta = this.getStartTimeFromIndex(this.selector.y) - current_hm;
+                    $('#subject-message').html(`선택한 과목 <span class="current-subject">${subject.name}</span>까지 ` +
+                    `${Math.floor(delta / 60) == 0 ? '' : Math.floor(delta / 60) + '시간 '}${delta % 60 == 0 ? '' : delta % 60 + '분 '}남았습니다.`);
+                }
+                else {
+                    ClassSchedule.selector = {dotw: undefined, y: undefined};
+                    $('#go-back').hide();
+                    return;
+                }
             }
             else if(this.selector.y < current_index) {
                 $('#subject-message').html(`선택한 과목 <span class="current-subject">${subject.name}</span>까지 1주일 남았습니다.`);
             }
-            else {   
-                $('#subject-message').html(`선택한 과목 <span class="current-subject">${subject.name}</span>까지 ${this.selector.y - current_index}교시 남았습니다.`);
+            else {
+                let delta = this.getStartTimeFromIndex(this.selector.y) - current_hm;
+                $('#subject-message').html(`선택한 과목 <span class="current-subject">${subject.name}</span>까지 ${Math.floor(delta / 60)}시간 ${delta % 60}분 남았습니다.`);
             }
         }
         else {
@@ -386,9 +392,5 @@ $(() => {
     $('#go-back').click(function() {
         ClassSchedule.selector = {dotw: undefined, y: undefined};
         ClassSchedule.refreshContents();
-    })
-
-    $('#go-back').click(function() {
-        SchoolSchedule.setSelectorAndRefresh();
-    })
+    });
 });
