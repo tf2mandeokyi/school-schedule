@@ -44,6 +44,9 @@ html, body {
     cursor: pointer;
     transition: 0.1s;
 }
+.selected-subject {
+    font-weight: 900;
+}
 @media screen and (min-width: 1100px) {
     .body-div {
         display: grid;
@@ -87,7 +90,7 @@ html, body {
         text-align: right;
         font-size: 20px;
     }
-    #go-back { /* OK */
+    #go-back { 
         top: 20%;
         left: 37.5%;
         position: absolute;
@@ -125,7 +128,7 @@ html, body {
         font-size: 30px;
     }
 }
-.go-to-button { /* OK */
+.go-to-button {
     font-size: 26px;
     border: 1px solid #0c9c5a;
     border-radius: 20px;
@@ -135,47 +138,39 @@ html, body {
     transition: 0.2s;
     display: inline-block;
 }
-.subject-td:hover { background: rgba(255, 255, 255, 0.1); } /* OK */
-.done-subject { /* OK */
+.subject-td:hover { background: rgba(255, 255, 255, 0.1); }
+.done-subject { 
     background-color: var(--complete-color);
 }
-.done-subject:hover { /* OK */
+.done-subject:hover { 
     background-color: var(--complete-color-hover) !important;
 }
-.doing-subject { /* OK */
+.doing-subject { 
     animation-duration: 1.2s;
     animation-name: doing-animation;
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
-.selected-subject {
-    font-weight: 900;
-}
-.go-to-zoom { /* OK */
+.go-to-zoom { 
     border: 1px solid rgb(45, 140, 255);
 }
-.go-to-wedorang:hover { /* OK */
+.go-to-wedorang:hover { 
     background: #0c9c5a;
 }
-.go-to-zoom:hover { /* OK */
+.go-to-zoom:hover { 
     background: rgb(45, 140, 255);
     color: black;
 }
-.go-to-button::before { /* OK */
+.go-to-button::before { 
     content: '<- ';
 }
 .time-wrapper {
     width: 100%;
 }
-.time { /* OK */
+.time { 
     margin-top: 10px;
     margin-right: 20px;
 }
-#go-back { /* OK */
-    text-align: left;
-    padding-left: 20px;
-    font-size: 20px;
-    cursor: pointer;
-    color:rgb(25, 86, 253);
-    text-decoration: underline;
+#go-back { 
+    margin-right: 20px;
 }
