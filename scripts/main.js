@@ -89,9 +89,7 @@ const subjects = {
     'etc': {
         name: '창체',
         wedorang_name: '1-6',
-        wedorang_link: 'http://rang.edunet.net/class/G000340878/index.do',
-        zoom_name: '1-6',
-        zoom_link: 'https://zoom.us/j/5397038425?pwd=VzFFM2xGWlhreit3czZXb3Bhejh5Zz09'
+        wedorang_link: 'http://rang.edunet.net/class/G000340878/index.do'
     }
 };
 
