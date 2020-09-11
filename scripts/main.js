@@ -252,11 +252,11 @@ ClassSchedule.setMessage = function(type, subject) {
     switch(type) {
         case 'weekend':
             $('#subject-message').html('오늘은 주말입니다.');
-            this.setDirectLinks(subjects['']);
+            this.setDirectLinks(subjects[''], true);
             break;
         case 'done':
             $('#subject-message').html('오늘 수업은 다 끝났습니다.');
-            this.setDirectLinks(subjects['']);
+            this.setDirectLinks(subjects[''], true);
             break;
         case 'break':
             $('#subject-message').html(
@@ -271,11 +271,11 @@ ClassSchedule.setMessage = function(type, subject) {
             break;
         case 'lunch':
             $('#subject-message').html(`지금은 <span class="current-subject">점심시간</span>입니다.`);
-            this.setDirectLinks(subjects['']);
+            this.setDirectLinks(subjects[''], true);
             break;
         case 'early_morning':
             $('#subject-message').html(`아직은 아침 조회 시간이 아닙니다.`);
-            this.setDirectLinks(subjects['']);
+            this.setDirectLinks(subjects[''], true);
             break;
         case 'morning':
             $('#subject-message').html(`지금은 <span class="current-subject">아침 조회 시간</span>입니다.`);
@@ -308,7 +308,11 @@ ClassSchedule.refreshWithInterval = function(/**@type {Date}*/ date=new Date()) 
 
 
 
-ClassSchedule.setDirectLinks = function(/**@type {Subject}*/{name, zoom_link, wedorang_link, wedorang_name, zoom_name}) {
+/**
+ * @param {Subject} subject - Subject object.
+ * @param {boolean} hide_zoom - Set this to true if zoom button should be hidden when unavailable.
+ */
+ClassSchedule.setDirectLinks = function({zoom_link, wedorang_link, wedorang_name, zoom_name}, hide_zoom=false) {
     let zoom_button = $('#zoom-button'), wedorang_button = $('#wedorang-button');
     if(!wedorang_link) {
         wedorang_button.hide();
@@ -319,11 +323,18 @@ ClassSchedule.setDirectLinks = function(/**@type {Subject}*/{name, zoom_link, we
         wedorang_button.show();
     }
     if(!zoom_link) {
-        zoom_button.addClass('no-zoom-link');
-        zoom_button.text('고정된 Zoom 링크가 없습니다.');
-        zoom_button.attr('href', '');
+        if(hide_zoom) {
+            zoom_button.hide();
+        }
+        else {
+            zoom_button.show();
+            zoom_button.addClass('no-zoom-link');
+            zoom_button.text('고정된 Zoom 링크가 없습니다.');
+            zoom_button.attr('href', '');
+        }
     }
     else {
+        zoom_button.show();
         zoom_button.text(`${!!zoom_name ? zoom_name + ' ' : ''}Zoom 참여하러 가기`);
         zoom_button.removeClass('no-zoom-link');
         zoom_button.attr('href', zoom_link);
