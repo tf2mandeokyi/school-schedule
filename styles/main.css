@@ -162,7 +162,20 @@ html, body {
     color: black;
 }
 .go-to-button::before { 
-    content: '<- ';
+    content: '';
+}
+.go-to-zoom.no-zoom-link { 
+    border: 1px solid rgba(45, 140, 255, 0.6);
+    color: rgba(255, 255, 255, 0.6);
+    cursor: not-allowed;
+    transition: 0s;
+}
+.go-to-zoom.no-zoom-link::before { 
+    content: '';
+}
+.go-to-zoom.no-zoom-link:hover { 
+    background: initial;
+    color: rgba(255, 255, 255, 0.6);
 }
 .time-wrapper {
     width: 100%;

@@ -87,7 +87,11 @@ const subjects = {
         wedorang_link: 'http://rang.edunet.net/class/G000341036/index.do'
     },
     'etc': {
-        name: '창체'
+        name: '창체',
+        wedorang_name: '1-6',
+        wedorang_link: 'http://rang.edunet.net/class/G000340878/index.do',
+        zoom_name: '1-6',
+        zoom_link: 'https://zoom.us/j/5397038425?pwd=VzFFM2xGWlhreit3czZXb3Bhejh5Zz09'
     }
 };
 
@@ -299,29 +303,32 @@ ClassSchedule.refreshContents = function(/**@type {Date}*/ date=new Date()) {
 ClassSchedule.interval_check_prev_second = -1;
 ClassSchedule.refreshWithInterval = function(/**@type {Date}*/ date=new Date()) {
     if(this.interval_check_prev_second !== date.getSeconds()) {
-        ClassSchedule.updateSelectedSubject(date);
-        ClassSchedule.refreshTable(date);
-        ClassSchedule.refreshCurrentSubject(date);
-        $('.time').text(
-            `${date.getFullYear()}년 ${date.getMonth()+1}월 ${date.getDate()}일 (${['일', '월', '화', '수', '목', '금', '토'][date.getDay()]}) ` +
-            `${('00' + date.getHours()).slice(-2)}:${('00' + date.getMinutes()).slice(-2)}:${('00' + date.getSeconds()).slice(-2)}`
-        );
+        this.refreshContents(date);
         this.interval_check_prev_second = date.getSeconds();
     }
 }
 
 
 
-ClassSchedule.setDirectLinks = function(/**@type {Subject}*/{zoom_link, wedorang_link}) {
-    if(wedorang_link === undefined) $('#wedorang-button').hide();
-    else {
-        $('#wedorang-button').show();
-        $('#wedorang-button').attr('href', wedorang_link);
+ClassSchedule.setDirectLinks = function(/**@type {Subject}*/{name, zoom_link, wedorang_link, wedorang_name, zoom_name}) {
+    let zoom_button = $('#zoom-button'), wedorang_button = $('#wedorang-button');
+    if(!wedorang_link) {
+        wedorang_button.hide();
     }
-    if(zoom_link === undefined) $('#zoom-button').hide();
     else {
-        $('#zoom-button').show();
-        $('#zoom-button').attr('href', zoom_link);
+        wedorang_button.text(`${!!wedorang_name ? wedorang_name + ' ' : ''}위두랑으로 가기`);
+        wedorang_button.attr('href', wedorang_link);
+        wedorang_button.show();
+    }
+    if(!zoom_link) {
+        zoom_button.addClass('no-zoom-link');
+        zoom_button.text('고정된 Zoom 링크가 없습니다.');
+        zoom_button.attr('href', '');
+    }
+    else {
+        zoom_button.text(`${!!zoom_name ? zoom_name + ' ' : ''}Zoom 참여하러 가기`);
+        zoom_button.removeClass('no-zoom-link');
+        zoom_button.attr('href', zoom_link);
     }
 }
 
@@ -337,10 +344,12 @@ ClassSchedule.updateSelectedSubject = function(/**@type {Date}*/date=new Date())
         if(current_dotw-1 === this.selector.dotw) {
             if(this.selector.y === current_index) {
                 let lunch_start = time_length.lunch_time_index * (time_length.class + time_length.break) + time_length.start;
+                let start_time = this.getStartTimeFromIndex(current_index);
                 if(current_hm >= lunch_start && current_hm < lunch_start + time_length.lunch) {
-                    let delta = this.getStartTimeFromIndex(this.selector.y) - current_hm;
-                    $('#subject-message').html(`선택한 과목 <span class="current-subject">${subject.name}</span>까지 ` +
-                    `${Math.floor(delta / 60) == 0 ? '' : Math.floor(delta / 60) + '시간 '}${delta % 60 == 0 ? '' : delta % 60 + '분 '}남았습니다.`);
+                    this.displayTimeLeft(subject.name, this.getStartTimeFromIndex(this.selector.y) - current_hm);
+                }
+                else if(current_hm < start_time) {
+                    this.displayTimeLeft(subject.name, this.getStartTimeFromIndex(this.selector.y) - current_hm);
                 }
                 else {
                     ClassSchedule.selector = {dotw: undefined, y: undefined};
@@ -352,8 +361,7 @@ ClassSchedule.updateSelectedSubject = function(/**@type {Date}*/date=new Date())
                 $('#subject-message').html(`선택한 과목 <span class="current-subject">${subject.name}</span>까지 1주일 남았습니다.`);
             }
             else {
-                let delta = this.getStartTimeFromIndex(this.selector.y) - current_hm;
-                $('#subject-message').html(`선택한 과목 <span class="current-subject">${subject.name}</span>까지 ${Math.floor(delta / 60)}시간 ${delta % 60}분 남았습니다.`);
+                this.displayTimeLeft(subject.name, this.getStartTimeFromIndex(this.selector.y) - current_hm);
             }
         }
         else {
@@ -370,11 +378,24 @@ ClassSchedule.updateSelectedSubject = function(/**@type {Date}*/date=new Date())
 
 
 
+/**
+ * @param {string} name - The name of the subject.
+ * @param {number} delta - The value of the time left until the subject is started
+ */
+ClassSchedule.displayTimeLeft = function(name, delta) {
+    $('#subject-message').html(
+        `선택한 과목 <span class="current-subject">${name}</span>까지 ` +
+        `${Math.floor(delta / 60) == 0 ? '' : Math.floor(delta / 60) + '시간 '}${delta % 60 == 0 ? '' : delta % 60 + '분 '}남았습니다.`
+    );
+}
+
+
+
 $(() => {
 
     ClassSchedule.initializeTable();
     ClassSchedule.refreshContents();
-    setInterval(ClassSchedule.refreshWithInterval, 66);
+    window.tablerefresh = setInterval(() => ClassSchedule.refreshWithInterval(), 66);
 
     $('.go-to-button').click(function() {
         if($(this).attr('href') === '') return;
