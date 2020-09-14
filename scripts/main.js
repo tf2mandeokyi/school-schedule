@@ -111,6 +111,7 @@ const schedule = [
 
 const time_length = {
     morning_start: 8 * 60 + 50,
+    morning_end: 9 * 60 + 5,
     start: 9 * 60,
     class: 50,
     break: 10,
@@ -218,13 +219,15 @@ ClassSchedule.refreshCurrentSubject = function(/**@type {Date}*/ date) {
     if(current_hm < time_length.morning_start) { // Early mornings
         this.setMessage('early_morning'); return;
     }
+    if(current_hm >= time_length.morning_start && current_hm < time_length.morning_end) { // Morning
+        this.setMessage('morning'); return;
+    }
+
     current_hm -= time_length.start;
     let lunch_start = time_length.lunch_time_index * (time_length.class + time_length.break);
     let subject = subjects[schedule[current_dotw-1][index]];
-    if(current_hm < 0) { // Morning
-        this.setMessage('morning');
-    }
-    else if(lunch_start <= current_hm && current_hm < lunch_start + time_length.lunch) { // Lunch time
+    
+    if(lunch_start <= current_hm && current_hm < lunch_start + time_length.lunch) { // Lunch time
         this.setMessage('lunch');
     }
     else { // Not lunch time
