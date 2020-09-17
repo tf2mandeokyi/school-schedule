@@ -403,11 +403,35 @@ ClassSchedule.displayTimeLeft = function(name, delta) {
 
 
 
-$(() => {
+const checkDarkTheme = function() {
+    let mode = localStorage.getItem('dark-mode');
+    if(mode === 'true') {
+        $('html').addClass('dark-theme');
+        $('#dark-light-icon').attr('class', 'fas fa-moon');
+        $('.dark-light-tooltiptext').text('클릭하시면 밝은 모드로 전환됩니다.');
+    } else {
+        $('html').removeClass('dark-theme');
+        $('#dark-light-icon').attr('class', 'fas fa-sun');
+        $('.dark-light-tooltiptext').text('클릭하시면 어두운 모드로 전환됩니다.');
+    }
+};
+
+
+
+(function() {
+    if(localStorage.getItem('dark-mode') === null) {
+        localStorage.setItem('dark-mode', true);
+    }
+})();
+
+
+
+$(function() {
 
     ClassSchedule.initializeTable();
     ClassSchedule.refreshContents();
     window.tablerefresh = setInterval(() => ClassSchedule.refreshWithInterval(), 66);
+    checkDarkTheme();
 
     $('.go-to-button').click(function() {
         if($(this).attr('href') === '') return;
@@ -425,5 +449,10 @@ $(() => {
     $('#go-back').click(function() {
         ClassSchedule.selector = {dotw: undefined, y: undefined};
         ClassSchedule.refreshContents();
+    });
+
+    $('.dark-light-button').click(() => {
+        localStorage.setItem('dark-mode', localStorage.getItem('dark-mode') === 'true' ? 'false' : 'true');
+        checkDarkTheme();
     });
 });

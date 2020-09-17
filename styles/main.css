@@ -12,12 +12,26 @@
 * {
     margin: 0; padding: 0;
     font-family: "NanumSquare", "돋움", Dotum, sans-serif;
-    color: white;
 }
 html, body {
-    background-color: rgb(41, 42, 42);
     height: 100%;
+    transition: background 0.1s;
+}
+html:not(.dark-theme) {
+    background-color: white;
+    color: black;
+    font-weight: 400;
+    --a-button-color: #0000ff;
+    --unavailable-color: rgba(0, 0, 0, 0.6);
+    --dotw-seperator: black;
+}
+html.dark-theme {
+    background-color: rgb(41, 42, 42);
+    color: white;
     font-weight: 300;
+    --a-button-color: #008cff;
+    --unavailable-color: rgba(255, 255, 255, 0.6);
+    --dotw-seperator: #dddddd;
 }
 .body-div {
     width: 100%;
@@ -31,7 +45,7 @@ html, body {
 }
 .dotw {
     text-align: center;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--dotw-seperator);
     padding: 4px 0;
 }
 .subject {
@@ -43,13 +57,23 @@ html, body {
     padding: auto;
     font-size: 22px;
     cursor: pointer;
-    transition: 0.1s;
+    transition: background 0.1s;
 }
 .selected-subject {
     font-weight: 900;
 }
 .current-subject {
     font-weight: 500;
+}
+.go-to-button {
+    font-size: 26px;
+    border: 1px solid #0c9c5a;
+    border-radius: 20px;
+    padding: 14px 30px;
+    margin: 10px 30px;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: inline-block;
 }
 @media screen and (min-width: 1100px) {
     .body-div {
@@ -94,12 +118,6 @@ html, body {
         text-align: right;
         font-size: 20px;
     }
-    .github-wrapper {
-        position: absolute;
-        vertical-align: bottom;
-        padding-bottom: 10px;
-        bottom: 0;
-    }
     #go-back { 
         top: 20%;
         left: 37.5%;
@@ -107,6 +125,35 @@ html, body {
     }
 }
 @media screen and (max-width: 1099px) {
+    @media screen and (min-width: 700px) {
+        .message-wrapper {
+            font-size: 50px;
+        }
+        .current-subject {
+            font-size: 70px;
+        }
+        .subject-submessage {
+            font-size: 30px;
+        }
+    }
+    @media screen and (max-width: 699px) {
+        .message-wrapper {
+            font-size: 30px;
+        }
+        .current-subject {
+            font-size: 40px;
+        }
+        .subject-submessage {
+            font-size: 20px;
+        }
+        .go-to-button {
+            font-size: 20px;
+            padding: 10px 20px;
+        }
+        .time {
+            font-size: 18px;
+        }
+    }
     .body-left {
         width: 100%;
         display: flex;
@@ -117,6 +164,7 @@ html, body {
     }
     .body-right {
         margin-top: 100px;
+        height: 400px;
         padding: 0 20px;
     }
     .time-wrapper {
@@ -128,27 +176,8 @@ html, body {
         width: 100px;
         height: 40px;
     }
-    .message-wrapper {
-        font-size: 50px;
-    }
-    .current-subject {
-        font-size: 70px;
-    }
-    .subject-submessage {
-        font-size: 30px;
-    }
 }
-.go-to-button {
-    font-size: 26px;
-    border: 1px solid #0c9c5a;
-    border-radius: 20px;
-    padding: 14px 30px;
-    margin: 10px 30px;
-    cursor: pointer;
-    transition: 0.2s;
-    display: inline-block;
-}
-.subject-td:hover { background: rgba(255, 255, 255, 0.1); }
+.subject-td:hover { background: rgba(128, 128, 128, 0.2); }
 .done-subject { 
     background-color: var(--complete-color);
 }
@@ -176,7 +205,7 @@ html, body {
 }
 .go-to-zoom.no-zoom-link { 
     border: 1px solid rgba(45, 140, 255, 0.6);
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--unavailable-color);
     cursor: not-allowed;
     transition: 0s;
 }
@@ -196,24 +225,51 @@ html, body {
 }
 #go-back { 
     margin-right: 20px;
-    color: #008cff;
+    color: var(--a-button-color);
     padding-left: 10px;
     cursor: pointer;
+    font-size: 16px;
 }
 #go-back:hover {
     text-decoration: underline;
 }
-.github-wrapper {
+.other-buttons-wrapper {
+    vertical-align: bottom;
     text-align: right;
     width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 10px;
 }
 .github { 
-    margin-right: 20px;
-    color: #008cff;
+    color: var(--a-button-color);
     text-decoration: none;
-    padding-left: 10px;
     cursor: pointer;
+    font-size: 16px;
+    margin-right: 20px;
 }
 .github:hover {
     text-decoration: underline;
+}
+.dark-light-button {
+    cursor: pointer;
+}
+.dark-light-tooltiptext {
+    visibility: hidden;
+    text-align: right;
+    position: absolute;
+    color: inherit;
+    bottom: 100%;
+    right: 0;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    background: rgb(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 5px;
+}
+.dark-light-wrapper:hover .dark-light-tooltiptext {
+    visibility: visible;
+}
+.dark-light-wrapper {
+    margin-right: 27px;
 }
