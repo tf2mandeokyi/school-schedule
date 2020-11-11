@@ -115,7 +115,7 @@ const time_length = {
     start: 9 * 60,
     class: 50,
     break: 10,
-    lunch_time_index: 4,
+    lunch_time_index: 3,
     lunch: 50
 }
 
