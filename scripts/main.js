@@ -70,7 +70,7 @@ ClassSchedule.fetchTable = async function(
         } catch(e) {
             rej(e); return;
         }
-        const data = response.json();
+        const data = await response.json();
         parent.subjects = data['subject'];
         parent.schedule = data['schedule'];
         res();
