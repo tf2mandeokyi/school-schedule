@@ -1,0 +1,97 @@
+{
+    "subjects": {
+        "": {"name": null},
+        "morning": {
+            "name": "아침조회",
+            "zoom_link": "https://us02web.zoom.us/j/9759995500?pwd=ejA2eEdONUl4UWN4djNrTzFYTTRxUT09",
+            "wedorang_link": null
+        },
+        "math_i": {
+            "name": "수학 I",
+            "zoom_link": "https://us02web.zoom.us/j/9759995500?pwd=ejA2eEdONUl4UWN4djNrTzFYTTRxUT09",
+            "wedorang_link": ""
+        },
+        "career": {
+            "name": "진로",
+            "zoom_link": "https://zoom.us/j/2408405653?pwd=TTBqYXZRb2lMWWhORUV1T3lTa2pSQT09",
+            "wedorang_link": ""
+        },
+        "physics_i": {
+            "name": "물리학 I",
+            "zoom_link": "https://zoom.us/j/8635976933?pwd=RERlM0lDZ0lMZmhYVDNETnRDalY0UT09",
+            "wedorang_link": ""
+        },
+        "chemistry_i": {
+            "name": "화학 I",
+            "zoom_link": "https://zoom.us/j/95379676891?pwd=WFBwT3ljcDZXYWdUVzZpSm9kVm53Zz09",
+            "wedorang_link": ""
+        },
+        "biology_i": {
+            "name": "생명과학 I",
+            "zoom_link": "https://zoom.us/j/4114987983?pwd=dzcvNlpySGpOTEwzR0dIRnFHMERiQT09",
+            "wedorang_link": ""
+        },
+        "geoscience_i": {
+            "name": "지구과학 I",
+            "zoom_link": "https://zoom.us/j/7684123905?pwd=dzlOVUZDay9aeU94ZHFQWlhUSjJVdz09",
+            "wedorang_link": ""
+        },
+        "science_fusion": {
+            "name": "과학융합",
+            "zoom_link": "https://zoom.us/j/96600597046?pwd=QlMzZ2hVY1hwZm9lbHY3d2JLSVVyZz09",
+            "wedorang_link": ""
+        },
+        "science_assignment": {
+            "name": "과제연구",
+            "zoom_link": "https://zoom.us/j/95379676891?pwd=WFBwT3ljcDZXYWdUVzZpSm9kVm53Zz09",
+            "wedorang_link": ""
+        },
+        "coding_science": {
+            "name": "정보과학",
+            "zoom_link": "https://us02web.zoom.us/j/3664875015?pwd=UGcrOXpFWkppZFNIZUdHRjRWR0pCUT09",
+            "wedorang_link": ""
+        },
+        "english_i": {
+            "name": "영어 I",
+            "zoom_link": "https://zoom.us/j/4313083494?pwd=Q3d6dUVJMEJsd2lUTy9LY2wwbURnZz09",
+            "wedorang_link": ""
+        },
+        "japanese_i": {
+            "name": "일본어 I",
+            "zoom_link": "https://zoom.us/j/4745092582?pwd=Wk9OZjdzY1Y0YzE0dFR1L0tkc1Rqdz09",
+            "wedorang_link": ""
+        },
+        "japanese_culture": {
+            "name": "일본문화",
+            "zoom_link": "https://zoom.us/j/4745092582?pwd=Wk9OZjdzY1Y0YzE0dFR1L0tkc1Rqdz09",
+            "wedorang_link": ""
+        },
+        "literature": {
+            "name": "문학",
+            "zoom_link": "https://zoom.us/j/8655918035?pwd=T0djbG5SbkhkdkEyblRzZDdXM29Ydz09",
+            "wedorang_link": ""
+        },
+        "music": {
+            "name": "음악",
+            "zoom_link": "https://us02web.zoom.us/j/7087938493?pwd=VWRJUkgxUmViSzJCU3FoVnVPVDc4Zz09",
+            "wedorang_link": ""
+        },
+        "pe": {
+            "name": "체육",
+            "zoom_link": "https://zoom.us/j/8758737053?pwd=ZzB4SmJnYWI0RjVZODF2cVRrc055dz09",
+            "wedorang_link": ""
+        },
+        "etc": {
+            "name": "창체",
+            "wedorang_name": "2-1",
+            "wedorang_link": ""
+        }
+    },
+    "schedule": [
+        ["japanese_culture", "english_i", "chemistry_i", "literature", "music", "pe", "coding_science"],
+        ["english_i", "geoscience_i", "science_fusion", "math_i", "physics_i", "japanese_i", "biology_i"],
+        ["music", "math_i", "literature", "career", "japanese_i", "coding_science"],
+        ["literature", "biology_i", "geoscience_i", "physics_i", "english_i", "science_assignment", "math_i"],
+        ["english_i", "literature", "chemistry_i", "math_i", "etc", "etc", "etc"]
+    ]
+}

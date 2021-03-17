@@ -9,114 +9,10 @@
 
 
 /**
- * Subject map.
- * @type {Object<string, Subject>}
+ * Returns hours and minutes combined in minutes.
  */
-const subjects = {
-    '': {name: undefined},
-    'morning': {
-        name: '아침조회',
-        zoom_link: 'https://zoom.us/j/5397038425?pwd=VzFFM2xGWlhreit3czZXb3Bhejh5Zz09',
-        wedorang_link: undefined
-    },
-    'korean_a': {
-        name: '국어A',
-        zoom_link: 'https://us02web.zoom.us/j/7820474556?pwd=bHJiQW44QUNZTjV5ZUp3UzhSN0xGUT09',
-        wedorang_link: 'http://rang.edunet.net/class/G000341088/index.do'
-    },
-    'korean_b': {
-        name: '국어B',
-        zoom_link: 'https://us02web.zoom.us/j/2439618049?pwd=N2ppWTNlUXpIY1EwemI5OGFHQjNvZz09',
-        wedorang_link: 'http://rang.edunet.net/class/G000341088/index.do'
-    },
-    'english': {
-        name: '영어',
-        zoom_link: 'https://zoom.us/j/4313083494?pwd=Q3d6dUVJMEJsd2lUTy9LY2wwbURnZz09',
-        wedorang_link: 'http://rang.edunet.net/class/G000341387/index.do'
-    },
-    'history': {
-        name: '한국사',
-        zoom_link: 'https://zoom.us/j/6700371524?pwd=R1h2RHlFaGVyNk94S1hTcFNlWEczdz09',
-        wedorang_link: 'http://rang.edunet.net/class/G000343437/index.do'
-    },
-    'math': {
-        name: '수학',
-        zoom_link: 'https://us02web.zoom.us/j/7708140017?pwd=TVlOSUJIUldFbUNkRlc4QkFDSjdudz09',
-        wedorang_link: 'http://rang.edunet.net/class/G000340371/index.do'
-    },
-    'social': {
-        name: '통합사회',
-        short_name: '통사',
-        zoom_link: 'https://us02web.zoom.us/j/2535430699?pwd=MmxEYnFsT0ZKUHZrUUp4bEhRanl4UT09',
-        wedorang_link: 'http://rang.edunet.net/class/G000340788/index.do'
-    },
-    'science_a': {
-        name: '통합과학A',
-        short_name: '통과A',
-        zoom_link: 'https://us02web.zoom.us/j/3699834810?pwd=ZU1qSm1BdnJJS0RUWUNCZEprQW1vZz09',
-        wedorang_link: 'http://rang.edunet.net/class/G000343648/index.do'
-    },
-    'science_b': {
-        name: '통합과학B',
-        short_name: '통과B',
-        zoom_link: 'https://zoom.us/j/5397038425?pwd=VzFFM2xGWlhreit3czZXb3Bhejh5Zz09',
-        wedorang_link: 'http://rang.edunet.net/class/G000343648/index.do'
-    },
-    'tech': {
-        name: '기술가정',
-        short_name: '기가',
-        zoom_link: 'https://zoom.us/j/8545161824?pwd=eWZ6WHZhakdCeHp3aFo4Z0xVWkxZQT09',
-        wedorang_link: 'http://rang.edunet.net/class/G001279722/index.do'
-    },
-    'pe': {
-        name: '체육',
-        zoom_link: 'https://zoom.us/j/5013245440?pwd=a3VqR2FKU1hkdDJVSXFDYVpMM3NlQT09',
-        wedorang_link: 'http://rang.edunet.net/class/G000340838/index.do'
-    },
-    'career': {
-        name: '진로',
-        wedorang_link: 'http://rang.edunet.net/class/G000571230/index.do'
-    },
-    'sci_experim': {
-        name: '과학탐구실험',
-        short_name: '과탐실',
-        wedorang_link: 'http://rang.edunet.net/class/G000341135/index.do'
-    },
-    'art': {
-        name: '미술',
-        wedorang_link: 'http://rang.edunet.net/class/G000341036/index.do'
-    },
-    'etc': {
-        name: '창체',
-        wedorang_name: '1-6',
-        wedorang_link: 'http://rang.edunet.net/class/G000340878/index.do'
-    }
-};
-
-
-
-/**
- * Weekly schedule.
- * @type {string[][]}
- */
-const schedule = [
-    ['art', 'art', 'social', 'math', 'korean_a', 'tech', 'english'],
-    ['math', 'pe', 'career', 'history', 'korean_a', 'science_a', 'social'],
-    ['science_b', 'math', 'social', 'korean_b', 'english', 'history'],
-    ['korean_b', 'english', 'history', 'tech', 'pe', 'math', 'science_b'],
-    ['science_a', 'tech', 'english', 'sci_experim', 'etc', 'etc', 'etc'],
-];
-
-
-
-const time_length = {
-    morning_start: 8 * 60 + 50,
-    morning_end: 9 * 60 + 5,
-    start: 9 * 60,
-    class: 50,
-    break: 10,
-    lunch_time_index: 3,
-    lunch: 50
+Date.prototype.getHourMinute = function() {
+    return this.getHours() * 60 + this.getMinutes();
 }
 
 
@@ -126,11 +22,18 @@ const ClassSchedule = {};
 
 
 /**
- * Returns hours and minutes combined in minutes.
+ * Subject map.
+ * @type {Object<string, Subject>}
  */
-Date.prototype.getHourMinute = function() {
-    return this.getHours() * 60 + this.getMinutes();
-}
+ClassSchedule.subjects = {};
+
+
+
+/**
+ * Weekly schedule.
+ * @type {string[][]}
+ */
+ClassSchedule.schedule = [];
 
 
 
@@ -150,12 +53,36 @@ ClassSchedule.getVariablesFromDate = function(/** @type {Date} */date=new Date()
 
 
 
+/**@return {Promise<void>}*/
+ClassSchedule.fetchTable = async function(
+        /** @type {string} */schoolName, 
+        /** @type {string} */semester, 
+        /** @type {string} */grade, 
+        /** @type {string} */class_name) {
+
+    return new Promise(async (res, rej) => {
+        /**@type {Response}*/
+        let response;
+        try {
+            response = await fetch(`./data/${schoolName}/${semester}/${grade}/${class_name}.json`);
+        } catch(e) {
+            rej(e); return;
+        }
+        const data = response.json();
+        this.subject = data['subject'];
+        this.schedule = data['schedule'];
+        res();
+    })
+}
+
+
+
 ClassSchedule.initializeTable = function() {
     $('#table').html('<tr>' + ['월', '화', '수', '목', '금'].map((str, idx) => `<td class="dotw">${str}</td>`) + '</tr>');
-    for(let y = 0; y < schedule[0].length; y++) {
-        let day_string = schedule.map((arr, dotw) => {
-            if(subjects[arr[y]] === undefined) return '<td></td>'
-            let {name, short_name} = subjects[arr[y]];
+    for(let y = 0; y < this.schedule[0].length; y++) {
+        let day_string = this.schedule.map((arr, dotw) => {
+            if(this.subjects[arr[y]] === undefined) return '<td></td>'
+            let {name, short_name} = this.subjects[arr[y]];
             return `
                 <td class="subject-td" id="time_td_${dotw}_${y}" time="${dotw},${y}" subject="${arr[y]}">
                     <div class="subject">${short_name !== undefined ? short_name : name !== undefined ? name : ''}</div>
@@ -170,13 +97,13 @@ ClassSchedule.initializeTable = function() {
 ClassSchedule.refreshTable = function(/**@type {Date}*/ date=new Date()) {
     let {dotw: current_dotw, hour_minute: current_hm} = this.getVariablesFromDate(date);
 
-    for(let y = 0; y < schedule[0].length; y++) {
+    for(let y = 0; y < this.schedule[0].length; y++) {
         
         let start_time = time_length.start + time_length.break + y * (time_length.class + time_length.break) + (y > time_length.lunch_time_index-1 ? time_length.lunch : 0);
         let end_time = start_time + time_length.class;
 
-        schedule.forEach((arr, dotw) => {
-            if(subjects[arr[y]] === undefined) return;
+        this.schedule.forEach((arr, dotw) => {
+            if(this.subjects[arr[y]] === undefined) return;
 
             let subject_time_status = '';
             if(current_dotw > dotw+1 || (current_dotw === dotw+1 && current_hm >= end_time)) subject_time_status = 'done-subject';
@@ -225,14 +152,14 @@ ClassSchedule.refreshCurrentSubject = function(/**@type {Date}*/ date) {
 
     current_hm -= time_length.start;
     let lunch_start = time_length.lunch_time_index * (time_length.class + time_length.break);
-    let subject = subjects[schedule[current_dotw-1][index]];
+    let subject = this.subjects[this.schedule[current_dotw-1][index]];
     
     if(lunch_start <= current_hm && current_hm < lunch_start + time_length.lunch) { // Lunch time
         this.setMessage('lunch');
     }
     else { // Not lunch time
         if(current_hm >= (lunch_start + time_length.lunch)) current_hm -= time_length.lunch;
-        if(index >= schedule[current_dotw-1].length) {
+        if(index >= this.schedule[current_dotw-1].length) {
             this.setMessage('done');
         }
         else if(current_hm % (time_length.class + time_length.break) < time_length.break) { // Break time
@@ -255,11 +182,11 @@ ClassSchedule.setMessage = function(type, subject) {
     switch(type) {
         case 'weekend':
             $('#subject-message').html('오늘은 주말입니다.');
-            this.setDirectLinks(subjects[''], true);
+            this.setDirectLinks(this.subjects[''], true);
             break;
         case 'done':
             $('#subject-message').html('오늘 수업은 다 끝났습니다.');
-            this.setDirectLinks(subjects[''], true);
+            this.setDirectLinks(this.subjects[''], true);
             break;
         case 'break':
             $('#subject-message').html(
@@ -274,15 +201,15 @@ ClassSchedule.setMessage = function(type, subject) {
             break;
         case 'lunch':
             $('#subject-message').html(`지금은 <span class="current-subject">점심시간</span>입니다.`);
-            this.setDirectLinks(subjects[''], true);
+            this.setDirectLinks(this.subjects[''], true);
             break;
         case 'early_morning':
             $('#subject-message').html(`아직은 아침 조회 시간이 아닙니다.`);
-            this.setDirectLinks(subjects[''], true);
+            this.setDirectLinks(this.subjects[''], true);
             break;
         case 'morning':
             $('#subject-message').html(`지금은 <span class="current-subject">아침 조회 시간</span>입니다.`);
-            this.setDirectLinks(subjects['morning']);
+            this.setDirectLinks(this.subjects['morning']);
             break;
     }
 }
@@ -351,7 +278,7 @@ ClassSchedule.updateSelectedSubject = function(/**@type {Date}*/date=new Date())
 
         let {index: current_index, dotw: current_dotw, hour_minute: current_hm} = this.getVariablesFromDate(date);
 
-        let subject = subjects[schedule[this.selector.dotw][this.selector.y]];
+        let subject = this.subjects[this.schedule[this.selector.dotw][this.selector.y]];
 
         if(current_dotw-1 === this.selector.dotw) {
             if(this.selector.y === current_index) {
@@ -428,31 +355,36 @@ const checkDarkTheme = function() {
 
 $(function() {
 
-    ClassSchedule.initializeTable();
-    ClassSchedule.refreshContents();
-    window.tablerefresh = setInterval(() => ClassSchedule.refreshWithInterval(), 66);
-    checkDarkTheme();
-
-    $('.go-to-button').click(function() {
-        if($(this).attr('href') === '') return;
-        window.open($(this).attr('href'), '_blank');
-    });
-
-    $('.subject-td').click(function() {
-        let time_arr = $(this).attr('time').split(',');
-        let dotw = parseInt(time_arr[0]), index = parseInt(time_arr[1]);
-
-        ClassSchedule.selector = {dotw: dotw, y: index};
+    ClassSchedule.fetchTable('과천중앙고', '1', '2', '1').then(() => {
+        ClassSchedule.initializeTable();
         ClassSchedule.refreshContents();
-    });
-
-    $('#go-back').click(function() {
-        ClassSchedule.selector = {dotw: undefined, y: undefined};
-        ClassSchedule.refreshContents();
-    });
-
-    $('.dark-light-button').click(() => {
-        localStorage.setItem('dark-mode', localStorage.getItem('dark-mode') === 'true' ? 'false' : 'true');
+        window.tablerefresh = setInterval(() => ClassSchedule.refreshWithInterval(), 66);
         checkDarkTheme();
-    });
+    
+        $('.go-to-button').click(function() {
+            if($(this).attr('href') === '') return;
+            window.open($(this).attr('href'), '_blank');
+        });
+    
+        $('.subject-td').click(function() {
+            let time_arr = $(this).attr('time').split(',');
+            let dotw = parseInt(time_arr[0]), index = parseInt(time_arr[1]);
+    
+            ClassSchedule.selector = {dotw: dotw, y: index};
+            ClassSchedule.refreshContents();
+        });
+    
+        $('#go-back').click(function() {
+            ClassSchedule.selector = {dotw: undefined, y: undefined};
+            ClassSchedule.refreshContents();
+        });
+    
+        $('.dark-light-button').click(() => {
+            localStorage.setItem('dark-mode', localStorage.getItem('dark-mode') === 'true' ? 'false' : 'true');
+            checkDarkTheme();
+        });
+    }).catch(e => {
+        console.error(e);
+    })
+    
 });
