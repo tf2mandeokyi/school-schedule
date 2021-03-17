@@ -71,7 +71,7 @@ ClassSchedule.fetchTable = async function(
             rej(e); return;
         }
         const data = response.json();
-        parent.subject = data['subject'];
+        parent.subjects = data['subject'];
         parent.schedule = data['schedule'];
         res();
     })
