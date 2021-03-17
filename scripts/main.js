@@ -6,6 +6,17 @@
  * @property {string?} wedorang_link - The wedorang link to that subject.
  */
 
+/**
+ * @typedef {Object} TimeLength
+ * @property {number} morning_start
+ * @property {number} morning_end 
+ * @property {number} start 
+ * @property {number} class 
+ * @property {number} break 
+ * @property {number} lunch_time_index 
+ * @property {number} lunch 
+ */
+
 
 
 /**
@@ -37,6 +48,14 @@ ClassSchedule.schedule = [];
 
 
 
+/**
+ * Time data.
+ * @type {TimeLength}
+ */
+ClassSchedule.time_length = {};
+
+
+
 /**@type {{dotw: number | undefined, y: number | undefined}}*/
 ClassSchedule.selector = {dotw: undefined, y: undefined};
 
@@ -54,7 +73,7 @@ ClassSchedule.getVariablesFromDate = function(/** @type {Date} */date=new Date()
 
 
 /**@return {Promise<void>}*/
-ClassSchedule.fetchTable = async function(
+ClassSchedule.fetchTable = function(
         /** @type {string} */schoolName, 
         /** @type {string} */semester, 
         /** @type {string} */grade, 
@@ -66,13 +85,14 @@ ClassSchedule.fetchTable = async function(
         /**@type {Response}*/
         let response;
         try {
-            response = await fetch(`./data/${schoolName}/${semester}/${grade}/${class_name}.json`);
+            response = await fetch(`https://tf2mandeokyi.github.io/school-schedule/data/${schoolName}/${semester}/${grade}/${class_name}.json`);
         } catch(e) {
             rej(e); return;
         }
         const data = await response.json();
-        parent.subjects = data['subject'];
+        parent.subjects = data['subjects'];
         parent.schedule = data['schedule'];
+        parent.time_length = data['time_length'];
         res();
     })
 }
@@ -101,8 +121,11 @@ ClassSchedule.refreshTable = function(/**@type {Date}*/ date=new Date()) {
 
     for(let y = 0; y < this.schedule[0].length; y++) {
         
-        let start_time = time_length.start + time_length.break + y * (time_length.class + time_length.break) + (y > time_length.lunch_time_index-1 ? time_length.lunch : 0);
-        let end_time = start_time + time_length.class;
+        let start_time = 
+            this.time_length.start + 
+            this.time_length.break + y * (this.time_length.class + this.time_length.break) + 
+            (y > this.time_length.lunch_time_index-1 ? this.time_length.lunch : 0);
+        let end_time = start_time + this.time_length.class;
 
         this.schedule.forEach((arr, dotw) => {
             if(this.subjects[arr[y]] === undefined) return;
@@ -120,10 +143,12 @@ ClassSchedule.refreshTable = function(/**@type {Date}*/ date=new Date()) {
 
 
 ClassSchedule.getIndexFromTime = function(/**@type {Date}*/ date=new Date()) {
-    let current_hm = date.getHourMinute() - time_length.start;
-    let lunch_start = time_length.lunch_time_index * (time_length.class + time_length.break);
+    let current_hm = date.getHourMinute() - this.time_length.start;
+    let lunch_start = this.time_length.lunch_time_index * (this.time_length.class + this.time_length.break);
     let index = Math.floor(
-        (current_hm < (lunch_start + time_length.lunch) ? current_hm : current_hm - time_length.lunch) / (time_length.class + time_length.break)
+        (current_hm < (lunch_start + this.time_length.lunch) ? 
+            current_hm : 
+            current_hm - this.time_length.lunch) / (this.time_length.class + this.time_length.break)
     );
     return index;
 }
@@ -131,8 +156,8 @@ ClassSchedule.getIndexFromTime = function(/**@type {Date}*/ date=new Date()) {
 
 
 ClassSchedule.getStartTimeFromIndex = function(/**@type {number}*/ index) {
-    return time_length.start + time_length.break + (time_length.class + time_length.break) * index +
-        (index >= time_length.lunch_time_index ? time_length.lunch : 0);
+    return this.time_length.start + this.time_length.break + (this.time_length.class + this.time_length.break) * index +
+        (index >= this.time_length.lunch_time_index ? this.time_length.lunch : 0);
 }
 
 
@@ -145,26 +170,26 @@ ClassSchedule.refreshCurrentSubject = function(/**@type {Date}*/ date) {
     if(current_dotw === 0 || current_dotw === 6) { // Weekends
         this.setMessage('weekend'); return;
     }
-    if(current_hm < time_length.morning_start) { // Early mornings
+    if(current_hm < this.time_length.morning_start) { // Early mornings
         this.setMessage('early_morning'); return;
     }
-    if(current_hm >= time_length.morning_start && current_hm < time_length.morning_end) { // Morning
+    if(current_hm >= this.time_length.morning_start && current_hm < this.time_length.morning_end) { // Morning
         this.setMessage('morning'); return;
     }
 
-    current_hm -= time_length.start;
-    let lunch_start = time_length.lunch_time_index * (time_length.class + time_length.break);
+    current_hm -= this.time_length.start;
+    let lunch_start = this.time_length.lunch_time_index * (this.time_length.class + this.time_length.break);
     let subject = this.subjects[this.schedule[current_dotw-1][index]];
     
-    if(lunch_start <= current_hm && current_hm < lunch_start + time_length.lunch) { // Lunch time
+    if(lunch_start <= current_hm && current_hm < lunch_start + this.time_length.lunch) { // Lunch time
         this.setMessage('lunch');
     }
     else { // Not lunch time
-        if(current_hm >= (lunch_start + time_length.lunch)) current_hm -= time_length.lunch;
+        if(current_hm >= (lunch_start + this.time_length.lunch)) current_hm -= this.time_length.lunch;
         if(index >= this.schedule[current_dotw-1].length) {
             this.setMessage('done');
         }
-        else if(current_hm % (time_length.class + time_length.break) < time_length.break) { // Break time
+        else if(current_hm % (this.time_length.class + this.time_length.break) < this.time_length.break) { // Break time
             this.setMessage('break', subject);
         }
         else { // Class time
@@ -284,9 +309,9 @@ ClassSchedule.updateSelectedSubject = function(/**@type {Date}*/date=new Date())
 
         if(current_dotw-1 === this.selector.dotw) {
             if(this.selector.y === current_index) {
-                let lunch_start = time_length.lunch_time_index * (time_length.class + time_length.break) + time_length.start;
+                let lunch_start = this.time_length.lunch_time_index * (this.time_length.class + this.time_length.break) + this.time_length.start;
                 let start_time = this.getStartTimeFromIndex(current_index);
-                if(current_hm >= lunch_start && current_hm < lunch_start + time_length.lunch) {
+                if(current_hm >= lunch_start && current_hm < lunch_start + this.time_length.lunch) {
                     this.displayTimeLeft(subject.name, this.getStartTimeFromIndex(this.selector.y) - current_hm);
                 }
                 else if(current_hm < start_time) {

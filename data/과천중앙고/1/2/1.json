@@ -93,5 +93,14 @@
         ["music", "math_i", "literature", "career", "japanese_i", "coding_science"],
         ["literature", "biology_i", "geoscience_i", "physics_i", "english_i", "science_assignment", "math_i"],
         ["english_i", "literature", "chemistry_i", "math_i", "etc", "etc", "etc"]
-    ]
+    ],
+    "time_length": {
+        "morning_start": 520,
+        "morning_end": 530,
+        "start": 530,
+        "class": 50,
+        "break": 10,
+        "lunch_time_index": 3,
+        "lunch": 50
+    }
 }
