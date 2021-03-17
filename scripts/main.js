@@ -60,6 +60,8 @@ ClassSchedule.fetchTable = async function(
         /** @type {string} */grade, 
         /** @type {string} */class_name) {
 
+    const parent = this;
+
     return new Promise(async (res, rej) => {
         /**@type {Response}*/
         let response;
@@ -69,8 +71,8 @@ ClassSchedule.fetchTable = async function(
             rej(e); return;
         }
         const data = response.json();
-        this.subject = data['subject'];
-        this.schedule = data['schedule'];
+        parent.subject = data['subject'];
+        parent.schedule = data['schedule'];
         res();
     })
 }
