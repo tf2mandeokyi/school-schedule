@@ -23,7 +23,6 @@
         },
         "chemistry_i": {
             "name": "화학 I",
-            "zoom_link": "https://zoom.us/j/95379676891?pwd=WFBwT3ljcDZXYWdUVzZpSm9kVm53Zz09",
             "wedorang_link": "https://rang.edunet.net/class/G001596672/index.do"
         },
         "biology_i": {
@@ -38,12 +37,10 @@
         },
         "science_fusion": {
             "name": "과학융합",
-            "zoom_link": "https://zoom.us/j/96600597046?pwd=QlMzZ2hVY1hwZm9lbHY3d2JLSVVyZz09",
             "wedorang_link": "https://rang.edunet.net/class/G001596705/index.do"
         },
         "science_assignment": {
             "name": "과제연구",
-            "zoom_link": "https://zoom.us/j/95379676891?pwd=WFBwT3ljcDZXYWdUVzZpSm9kVm53Zz09",
             "wedorang_link": "https://rang.edunet.net/class/G001596689/index.do"
         },
         "coding_science": {
