@@ -46,8 +46,13 @@
             "zoom_link": "https://us02web.zoom.us/j/7087938493?pwd=VWRJUkgxUmViSzJCU3FoVnVPVDc4Zz09",
             "wedorang_link": "https://rang.edunet.net/class/G001596468/index.do"
         },
+        "sports": {
+            "name": "스포츠 생활",
+            "zoom_link": "https://zoom.us/j/8758737053?pwd=ZzB4SmJnYWI0RjVZODF2cVRrc055dz09",
+            "wedorang_link": "https://rang.edunet.net/class/G000340838/index.do"
+        },
         "pe": {
-            "name": "체육",
+            "name": "단체 운동",
             "zoom_link": "https://zoom.us/j/8758737053?pwd=ZzB4SmJnYWI0RjVZODF2cVRrc055dz09",
             "wedorang_link": "https://rang.edunet.net/class/G000340838/index.do"
         },
@@ -66,7 +71,7 @@
             "zoom_link": "https://us02web.zoom.us/j/4780897381?pwd=S3JzSFlGbjQxOG9WNlNmbndhR0VUZz09",
             "wedorang_link": "https://rang.edunet.net/class/G001596423/index.do"
         },
-        "geography": {
+        "korean_geography": {
             "name": "한국지리 A",
             "zoom_link": "https://zoom.us/j/7797855437?pwd=N1VnUU1MVVk3VjM0UFJia2Y1aEJhQT09",
             "wedorang_link": "https://rang.edunet.net/class/G001599872/index.do"
@@ -83,11 +88,11 @@
         }
     },
     "schedule": [
-        ["japanese_culture", "english_i", "chemistry_i", "literature", "music", "pe", "coding_science"],
-        ["english_i", "geoscience_i", "science_fusion", "math_i", "physics_i", "japanese_i", "biology_i"],
-        ["music", "math_i", "literature", "career", "japanese_i", "coding_science"],
-        ["literature", "biology_i", "geoscience_i", "physics_i", "english_i", "science_assignment", "math_i"],
-        ["english_i", "literature", "chemistry_i", "math_i", "etc", "etc", "etc"]
+        ["life", "sociology", "math_i", "english_i", "psychology", "literature", "korean_geography"],
+        ["literature", "english_i", "coding_science", "music", "sports", "life", "japanese_i"],
+        ["politics", "pe", "math_i", "sociology", "literature", "english_i"],
+        ["math_i", "english_i", "coding_science", "literature", "politics", "japanese_i", "career"],
+        ["math_i", "japanese_culture", "music", "korean_geography", "etc", "etc", "etc"]
     ],
     "time_length": {
         "morning_start": 520,
