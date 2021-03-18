@@ -1,0 +1,101 @@
+{
+    "subjects": {
+        "": {"name": null},
+        "morning": {
+            "name": "아침조회",
+            "zoom_link": "https://zoom.us/j/4313083494?pwd=Q3d6dUVJMEJsd2lUTy9LY2wwbURnZz09",
+            "wedorang_link": null
+        },
+        "math_i": {
+            "name": "수학 I",
+            "zoom_link": "https://us02web.zoom.us/j/9759995500?pwd=ejA2eEdONUl4UWN4djNrTzFYTTRxUT09",
+            "wedorang_link": "https://rang.edunet.net/class/G001596720/index.do"
+        },
+        "career": {
+            "name": "진로",
+            "zoom_link": "진로 https://zoom.us/j/8758737053?pwd=ZzB4SmJnYWI0RjVZODF2cVRrc055dz09",
+            "wedorang_link": "https://rang.edunet.net/class/G001615169/index.do"
+        },
+        "coding_science": {
+            "name": "정보과학",
+            "zoom_link": "https://us02web.zoom.us/j/3664875015?pwd=UGcrOXpFWkppZFNIZUdHRjRWR0pCUT09",
+            "wedorang_link": "https://rang.edunet.net/class/G001582206/index.do"
+        },
+        "english_i": {
+            "name": "영어 I",
+            "zoom_link": "https://zoom.us/j/4313083494?pwd=Q3d6dUVJMEJsd2lUTy9LY2wwbURnZz09",
+            "wedorang_link": "https://rang.edunet.net/class/G001596702/index.do"
+        },
+        "japanese_i": {
+            "name": "일본어 I",
+            "zoom_link": "https://zoom.us/j/4745092582?pwd=Wk9OZjdzY1Y0YzE0dFR1L0tkc1Rqdz09",
+            "wedorang_link": "https://rang.edunet.net/class/G001605668/index.do"
+        },
+        "japanese_culture": {
+            "name": "일본문화",
+            "zoom_link": "https://zoom.us/j/4745092582?pwd=Wk9OZjdzY1Y0YzE0dFR1L0tkc1Rqdz09",
+            "wedorang_link": "https://rang.edunet.net/class/G001605668/index.do"
+        },
+        "literature": {
+            "name": "문학",
+            "zoom_link": "https://zoom.us/j/8655918035?pwd=T0djbG5SbkhkdkEyblRzZDdXM29Ydz09",
+            "wedorang_link": "https://rang.edunet.net/class/G001597055/index.do"
+        },
+        "music": {
+            "name": "음악",
+            "zoom_link": "https://us02web.zoom.us/j/7087938493?pwd=VWRJUkgxUmViSzJCU3FoVnVPVDc4Zz09",
+            "wedorang_link": "https://rang.edunet.net/class/G001596468/index.do"
+        },
+        "pe": {
+            "name": "체육",
+            "zoom_link": "https://zoom.us/j/8758737053?pwd=ZzB4SmJnYWI0RjVZODF2cVRrc055dz09",
+            "wedorang_link": "https://rang.edunet.net/class/G000340838/index.do"
+        },
+        "life": {
+            "name": "생활과 윤리",
+            "zoom_link": "https://us02web.zoom.us/j/8082475642?pwd=WW1Kd3RXUUpvaXE2Qk1KMzZvY3N6dz09",
+            "wedorang_link": "https://rang.edunet.net/class/G001597229/index.do"
+        },
+        "psychology": {
+            "name": "심리학",
+            "zoom_link": "https://zoom.us/j/5935021428?pwd=Y2ZtZUhOVzI3cVdrNkVMS2N2UXFHQT09",
+            "wedorang_link": "https://rang.edunet.net/class/G001614251/index.do"
+        },
+        "politics": {
+            "name": "정치와 법",
+            "zoom_link": "https://us02web.zoom.us/j/4780897381?pwd=S3JzSFlGbjQxOG9WNlNmbndhR0VUZz09",
+            "wedorang_link": "https://rang.edunet.net/class/G001596423/index.do"
+        },
+        "geography": {
+            "name": "한국지리 A",
+            "zoom_link": "https://zoom.us/j/7797855437?pwd=N1VnUU1MVVk3VjM0UFJia2Y1aEJhQT09",
+            "wedorang_link": "https://rang.edunet.net/class/G001599872/index.do"
+        },
+        "sociology": {
+            "name": "사회탐구",
+            "zoom_link": "https://us02web.zoom.us/j/9112756847?pwd=N3hGZ243WGQyanVpZWZ2SHNyOHFIdz09",
+            "wedorang_link": null
+        },
+        "etc": {
+            "name": "창체",
+            "wedorang_name": "2-7",
+            "wedorang_link": "https://rang.edunet.net/class/G001598746/index.do"
+        }
+    },
+    "schedule": [
+        ["japanese_culture", "english_i", "chemistry_i", "literature", "music", "pe", "coding_science"],
+        ["english_i", "geoscience_i", "science_fusion", "math_i", "physics_i", "japanese_i", "biology_i"],
+        ["music", "math_i", "literature", "career", "japanese_i", "coding_science"],
+        ["literature", "biology_i", "geoscience_i", "physics_i", "english_i", "science_assignment", "math_i"],
+        ["english_i", "literature", "chemistry_i", "math_i", "etc", "etc", "etc"]
+    ],
+    "time_length": {
+        "morning_start": 520,
+        "morning_end": 530,
+        "start": 530,
+        "class": 50,
+        "break": 10,
+        "lunch_time_index": 4,
+        "lunch": 50
+    }
+}

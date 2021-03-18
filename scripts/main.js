@@ -382,11 +382,13 @@ const checkDarkTheme = function() {
 
 $(function() {
 
-    ClassSchedule.fetchTable('과천중앙고', '1', '2', '1').then(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    checkDarkTheme();
+
+    ClassSchedule.fetchTable('과천중앙고', '1', '2', urlParams.get("class") || '1').then(() => {
         ClassSchedule.initializeTable();
         ClassSchedule.refreshContents();
         window.tablerefresh = setInterval(() => ClassSchedule.refreshWithInterval(), 66);
-        checkDarkTheme();
     
         $('.go-to-button').click(function() {
             if($(this).attr('href') === '') return;
