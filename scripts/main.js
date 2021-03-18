@@ -85,7 +85,7 @@ ClassSchedule.fetchTable = function(
         /**@type {Response}*/
         let response;
         try {
-            response = await fetch(`https://tf2mandeokyi.github.io/school-schedule/data/${schoolName}/${semester}/${grade}/${class_name}.json`);
+            response = await fetch(`./data/${schoolName}/${semester}/${grade}/${class_name}.json`);
         } catch(e) {
             rej(e); return;
         }
