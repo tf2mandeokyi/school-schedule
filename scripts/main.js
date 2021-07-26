@@ -145,12 +145,11 @@ ClassSchedule.refreshTable = function(/**@type {Date}*/ date=new Date()) {
 ClassSchedule.getIndexFromTime = function(/**@type {Date}*/ date=new Date()) {
     let current_hm = date.getHourMinute() - this.time_length.start;
     let lunch_start = this.time_length.lunch_time_index * (this.time_length.class + this.time_length.break);
-    let index = Math.floor(
+    return Math.floor(
         (current_hm < (lunch_start + this.time_length.lunch) ? 
             current_hm : 
             current_hm - this.time_length.lunch) / (this.time_length.class + this.time_length.break)
     );
-    return index;
 }
 
 
@@ -388,7 +387,7 @@ $(function() {
 
     checkDarkTheme();
 
-    ClassSchedule.fetchTable('과천중앙고', '1', '2', class_num).then(() => {
+    ClassSchedule.fetchTable('과천중앙고', '2', '2', class_num).then(() => {
         ClassSchedule.initializeTable();
         ClassSchedule.refreshContents();
         window.tablerefresh = setInterval(() => ClassSchedule.refreshWithInterval(), 66);

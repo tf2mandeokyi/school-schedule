@@ -1,0 +1,103 @@
+{
+    "subjects": {
+        "": {"name": null},
+        "morning": {
+            "name": "아침조회",
+            "zoom_link": "https://us02web.zoom.us/j/9759995500?pwd=ejA2eEdONUl4UWN4djNrTzFYTTRxUT09",
+            "wedorang_link": null
+        },
+        "math_ii": {
+            "name": "수학 I",
+            "zoom_link": "https://us02web.zoom.us/j/9759995500?pwd=ejA2eEdONUl4UWN4djNrTzFYTTRxUT09",
+            "wedorang_link": "https://rang.edunet.net/class/G001596720/index.do"
+        },
+        "career": {
+            "name": "진로",
+            "zoom_link": "https://zoom.us/j/2408405653?pwd=TTBqYXZRb2lMWWhORUV1T3lTa2pSQT09",
+            "wedorang_link": "https://rang.edunet.net/class/G001615169/index.do"
+        },
+        "physics_i": {
+            "name": "물리학 I",
+            "zoom_link": "https://zoom.us/j/8635976933?pwd=RERlM0lDZ0lMZmhYVDNETnRDalY0UT09",
+            "wedorang_link": "https://rang.edunet.net/class/G001597851/index.do"
+        },
+        "chemistry_i": {
+            "name": "화학 I",
+            "wedorang_link": "https://rang.edunet.net/class/G001596672/index.do"
+        },
+        "biology_i": {
+            "name": "생명과학 I",
+            "zoom_link": "https://zoom.us/j/4114987983?pwd=dzcvNlpySGpOTEwzR0dIRnFHMERiQT09",
+            "wedorang_link": "https://rang.edunet.net/class/G001597070/index.do"
+        },
+        "geology_i": {
+            "name": "지구과학 I",
+            "zoom_link": "https://zoom.us/j/7684123905?pwd=dzlOVUZDay9aeU94ZHFQWlhUSjJVdz09",
+            "wedorang_link": "https://rang.edunet.net/class/G001574090/index.do"
+        },
+        "science_fusion": {
+            "name": "과학융합",
+            "wedorang_link": "https://rang.edunet.net/class/G001596705/index.do"
+        },
+        "science_assignment": {
+            "name": "과제연구",
+            "wedorang_link": "https://rang.edunet.net/class/G001596689/index.do"
+        },
+        "coding_science": {
+            "name": "정보과학",
+            "zoom_link": "https://us02web.zoom.us/j/3664875015?pwd=UGcrOXpFWkppZFNIZUdHRjRWR0pCUT09",
+            "wedorang_link": "https://rang.edunet.net/class/G001582206/index.do"
+        },
+        "english_ii": {
+            "name": "영어 I",
+            "zoom_link": "https://zoom.us/j/4313083494?pwd=Q3d6dUVJMEJsd2lUTy9LY2wwbURnZz09",
+            "wedorang_link": "https://rang.edunet.net/class/G001596702/index.do"
+        },
+        "japanese_i": {
+            "name": "일본어 I",
+            "zoom_link": "https://zoom.us/j/4745092582?pwd=Wk9OZjdzY1Y0YzE0dFR1L0tkc1Rqdz09",
+            "wedorang_link": "https://rang.edunet.net/class/G001605668/index.do"
+        },
+        "japanese_culture": {
+            "name": "일본문화",
+            "zoom_link": "https://zoom.us/j/4745092582?pwd=Wk9OZjdzY1Y0YzE0dFR1L0tkc1Rqdz09",
+            "wedorang_link": "https://rang.edunet.net/class/G001605668/index.do"
+        },
+        "language_media": {
+            "name": "언어와 매체",
+            "zoom_link": "https://zoom.us/j/8655918035?pwd=T0djbG5SbkhkdkEyblRzZDdXM29Ydz09",
+            "wedorang_link": "https://rang.edunet.net/class/G001597055/index.do"
+        },
+        "music": {
+            "name": "음악",
+            "zoom_link": "https://us02web.zoom.us/j/7087938493?pwd=VWRJUkgxUmViSzJCU3FoVnVPVDc4Zz09",
+            "wedorang_link": "https://rang.edunet.net/class/G001596468/index.do"
+        },
+        "sports": {
+            "name": "스포츠",
+            "zoom_link": "https://zoom.us/j/8758737053?pwd=ZzB4SmJnYWI0RjVZODF2cVRrc055dz09",
+            "wedorang_link": "https://rang.edunet.net/class/G000340838/index.do"
+        },
+        "etc": {
+            "name": "창체",
+            "wedorang_name": "2-1",
+            "wedorang_link": "https://rang.edunet.net/class/G001598746/index.do"
+        }
+    },
+    "schedule": [
+        ["geology_i", "language_media", "music", "math_ii", "japanese_i", "english_ii", "physics_i"],
+        ["english_ii", "language_media", "coding_science", "math_ii", "sports", "japanese_i", "chemistry_i"],
+        ["music", "career", "science_fusion", "science_assignment", "math_ii", "biology_i"],
+        ["physics_i", "japanese_culture", "math_ii", "english_ii", "geology_i", "biology_i", "language_media"],
+        ["coding_science", "language_media", "english_ii", "chemistry_i", "etc", "etc", "etc"]
+    ],
+    "time_length": {
+        "morning_start": 520,
+        "morning_end": 530,
+        "start": 530,
+        "class": 50,
+        "break": 10,
+        "lunch_time_index": 4,
+        "lunch": 50
+    }
+}
