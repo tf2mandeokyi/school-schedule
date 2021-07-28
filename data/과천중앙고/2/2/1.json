@@ -23,7 +23,8 @@
         },
         "chemistry_i": {
             "name": "화학 I",
-            "wedorang_link": "https://rang.edunet.net/class/G001596672/index.do"
+            "wedorang_link": "https://rang.edunet.net/class/G001596672/index.do",
+            "zoom_link": "https://zoom.us/j/7275070308?pwd=K01tNWNrai9NeXNYczdCd01sYmxkQT09"
         },
         "biology_i": {
             "name": "생명과학 I",
@@ -37,11 +38,13 @@
         },
         "science_fusion": {
             "name": "과학융합",
-            "wedorang_link": "https://rang.edunet.net/class/G001596705/index.do"
+            "wedorang_link": "https://rang.edunet.net/class/G001596705/index.do",
+            "zoom_link": "https://zoom.us/j/7275070308?pwd=K01tNWNrai9NeXNYczdCd01sYmxkQT09"
         },
         "science_assignment": {
             "name": "과제연구",
-            "wedorang_link": "https://rang.edunet.net/class/G001596689/index.do"
+            "wedorang_link": "https://rang.edunet.net/class/G001596689/index.do",
+            "zoom_link": "https://zoom.us/j/7275070308?pwd=K01tNWNrai9NeXNYczdCd01sYmxkQT09"
         },
         "coding_science": {
             "name": "정보과학",
@@ -70,7 +73,7 @@
         },
         "music": {
             "name": "음악",
-            "zoom_link": "https://us02web.zoom.us/j/7087938493?pwd=VWRJUkgxUmViSzJCU3FoVnVPVDc4Zz09",
+            "zoom_link": "https://us02web.zoom.us/j/7087938493?pwd=VUYybHhOVlVtd0MxWVVOQlkxZmdqdz09",
             "wedorang_link": "https://rang.edunet.net/class/G001596468/index.do"
         },
         "sports": {
