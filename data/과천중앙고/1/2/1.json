@@ -3,82 +3,66 @@
         "": {"name": null},
         "morning": {
             "name": "아침조회",
-            "zoom_link": "https://us02web.zoom.us/j/9759995500?pwd=ejA2eEdONUl4UWN4djNrTzFYTTRxUT09",
             "wedorang_link": null
         },
         "math_i": {
             "name": "수학 I",
-            "zoom_link": "https://us02web.zoom.us/j/9759995500?pwd=ejA2eEdONUl4UWN4djNrTzFYTTRxUT09",
             "wedorang_link": "https://rang.edunet.net/class/G001596720/index.do"
         },
         "career": {
             "name": "진로",
-            "zoom_link": "https://zoom.us/j/2408405653?pwd=TTBqYXZRb2lMWWhORUV1T3lTa2pSQT09",
             "wedorang_link": "https://rang.edunet.net/class/G001615169/index.do"
         },
         "physics_i": {
             "name": "물리학 I",
-            "zoom_link": "https://us02web.zoom.us/j/4272206402?pwd=c3pJN0hqNlR3ZnkrcmJhMUp5RW9pZz09",
             "wedorang_link": "https://rang.edunet.net/class/G001597851/index.do"
         },
         "chemistry_i": {
             "name": "화학 I",
-            "wedorang_link": "https://rang.edunet.net/class/G001596672/index.do",
-            "zoom_link": "https://zoom.us/j/7275070308?pwd=K01tNWNrai9NeXNYczdCd01sYmxkQT09"
+            "wedorang_link": "https://rang.edunet.net/class/G001596672/index.do"
         },
         "biology_i": {
             "name": "생명과학 I",
-            "zoom_link": "https://zoom.us/j/4114987983?pwd=dzcvNlpySGpOTEwzR0dIRnFHMERiQT09",
             "wedorang_link": "https://rang.edunet.net/class/G001597070/index.do"
         },
         "geoscience_i": {
             "name": "지구과학 I",
-            "zoom_link": "https://zoom.us/j/7684123905?pwd=dzlOVUZDay9aeU94ZHFQWlhUSjJVdz09",
             "wedorang_link": "https://rang.edunet.net/class/G001574090/index.do"
         },
         "science_fusion": {
             "name": "과학융합",
-            "wedorang_link": "https://rang.edunet.net/class/G001596705/index.do",
-            "zoom_link": "https://zoom.us/j/7275070308?pwd=K01tNWNrai9NeXNYczdCd01sYmxkQT09"
+            "wedorang_link": "https://rang.edunet.net/class/G001596705/index.do"
         },
         "science_assignment": {
             "name": "과제연구",
-            "wedorang_link": "https://rang.edunet.net/class/G001596689/index.do",
-            "zoom_link": "https://zoom.us/j/7275070308?pwd=K01tNWNrai9NeXNYczdCd01sYmxkQT09"
+            "wedorang_link": "https://rang.edunet.net/class/G001596689/index.do"
         },
         "coding_science": {
             "name": "정보과학",
-            "zoom_link": "https://us02web.zoom.us/j/3664875015?pwd=UGcrOXpFWkppZFNIZUdHRjRWR0pCUT09",
             "wedorang_link": "https://rang.edunet.net/class/G001582206/index.do"
         },
         "english_i": {
             "name": "영어 I",
-            "zoom_link": "https://zoom.us/j/4313083494?pwd=Q3d6dUVJMEJsd2lUTy9LY2wwbURnZz09",
             "wedorang_link": "https://rang.edunet.net/class/G001596702/index.do"
         },
         "japanese_i": {
             "name": "일본어 I",
-            "zoom_link": "https://zoom.us/j/4745092582?pwd=Wk9OZjdzY1Y0YzE0dFR1L0tkc1Rqdz09",
             "wedorang_link": "https://rang.edunet.net/class/G001605668/index.do"
         },
         "japanese_culture": {
             "name": "일본문화",
-            "zoom_link": "https://zoom.us/j/4745092582?pwd=Wk9OZjdzY1Y0YzE0dFR1L0tkc1Rqdz09",
             "wedorang_link": "https://rang.edunet.net/class/G001605668/index.do"
         },
         "literature": {
             "name": "문학",
-            "zoom_link": "https://zoom.us/j/8655918035?pwd=T0djbG5SbkhkdkEyblRzZDdXM29Ydz09",
             "wedorang_link": "https://rang.edunet.net/class/G001597055/index.do"
         },
         "music": {
             "name": "음악",
-            "zoom_link": "https://us02web.zoom.us/j/7087938493?pwd=VUYybHhOVlVtd0MxWVVOQlkxZmdqdz09",
             "wedorang_link": "https://rang.edunet.net/class/G001596468/index.do"
         },
         "pe": {
             "name": "체육",
-            "zoom_link": "https://zoom.us/j/8758737053?pwd=ZzB4SmJnYWI0RjVZODF2cVRrc055dz09",
             "wedorang_link": "https://rang.edunet.net/class/G000340838/index.do"
         },
         "etc": {
