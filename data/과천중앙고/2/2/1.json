@@ -19,7 +19,7 @@
         },
         "chemistry_i": {
             "name": "화학 I",
-            "wedorang_link": "https://rang.edunet.net/class/G001596672/index.do",
+            "wedorang_link": "https://rang.edunet.net/class/G001596672/index.do"
         },
         "biology_i": {
             "name": "생명과학 I",
@@ -31,11 +31,11 @@
         },
         "science_fusion": {
             "name": "과학융합",
-            "wedorang_link": "https://rang.edunet.net/class/G001596705/index.do",
+            "wedorang_link": "https://rang.edunet.net/class/G001596705/index.do"
         },
         "science_assignment": {
             "name": "과제연구",
-            "wedorang_link": "https://rang.edunet.net/class/G001596689/index.do",
+            "wedorang_link": "https://rang.edunet.net/class/G001596689/index.do"
         },
         "coding_science": {
             "name": "정보과학",
